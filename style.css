@@ -161,6 +161,7 @@ section {
 /* Services - pattern*/
 .services {
   min-height: 60vh;
+  padding-bottom: 20rem;
 }
 
 .services h2,
@@ -247,7 +248,6 @@ section {
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
-  min-height: 100vh;
   padding: 3rem 1rem;
 }
 
@@ -258,6 +258,7 @@ section {
 .motivos h2 {
   text-align: center;
   margin-bottom: 2rem;
+  padding-top: 3rem;
 }
 
 .motivos-content {
@@ -305,7 +306,6 @@ section {
 .motivos-image img {
   width: 100%;
   max-width: 400px;
-  height: 500px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   object-fit: cover;
@@ -403,6 +403,7 @@ section {
 /* Benefícios - pattern*/
 .beneficios {
   min-height: 50vh;
+  padding-bottom: 20rem;
 }
 
 .beneficios h2 {
