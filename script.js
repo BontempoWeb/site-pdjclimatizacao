@@ -404,6 +404,8 @@ document.addEventListener("DOMContentLoaded", function () {
       img.classList.add("brand-logo");
       img.src = logoSrc;
       img.alt = "Logo de marca";
+      // Evita arrastar a imagem (melhora comportamento mobile)
+      img.draggable = false;
       brandsTrack.appendChild(img);
     });
   };
