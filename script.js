@@ -216,6 +216,203 @@ document.addEventListener("DOMContentLoaded", function () {
   startAutoplay(); // Inicia o autoplay na carga da página
 });
 
+// Carrossel de imagens da seção Motivos
+document.addEventListener("DOMContentLoaded", function () {
+  // Imagens para o carrossel (todas as .png da pasta imgs)
+  const motivosImages = [
+    "./imgs/ph01.png",
+    "./imgs/ph02.jpg",
+    "./imgs/ph03.jpg",
+    "./imgs/ph04.jpg",
+  ];
+
+  const motivosTrack = document.querySelector(".motivos-carousel-track");
+  const motivosCarousel = document.querySelector(".motivos-carousel");
+
+  if (!motivosTrack || !motivosCarousel) return;
+
+  let motivosAutoplayTimer;
+  let motivosIsTransitioning = false;
+
+  // Popular o carrossel com as imagens
+  motivosImages.forEach((imgSrc, index) => {
+    const img = document.createElement("img");
+    img.classList.add("motivos-carousel-image");
+    img.src = imgSrc;
+    img.alt = `Imagem ${index + 1}`;
+    motivosTrack.appendChild(img);
+  });
+
+  // Lógica de clonagem para loop infinito
+  const motivosCards = document.querySelectorAll(".motivos-carousel-image");
+  const motivosNumSlides = motivosCards.length;
+
+  const motivosFirstClone = motivosCards[0].cloneNode(true);
+  const motivosLastClone = motivosCards[motivosNumSlides - 1].cloneNode(true);
+
+  motivosTrack.appendChild(motivosFirstClone);
+  motivosTrack.prepend(motivosLastClone);
+
+  const motivosAllCards = document.querySelectorAll(".motivos-carousel-image");
+  let motivosCurrentIndex = 1;
+
+  function motivosGetOffset(index) {
+    const cardWidth = motivosCards[0].offsetWidth;
+    return index * cardWidth;
+  }
+
+  function motivosShowSlide(index) {
+    motivosTrack.style.transform = `translateX(-${motivosGetOffset(index)}px)`;
+  }
+
+  // Inicialização
+  motivosTrack.style.transition = "none";
+  motivosShowSlide(motivosCurrentIndex);
+
+  setTimeout(() => {
+    motivosTrack.style.transition = "transform 0.5s ease-in-out";
+  }, 0);
+
+  // Lógica de loop
+  motivosTrack.addEventListener("transitionend", () => {
+    if (motivosCurrentIndex === motivosNumSlides + 1) {
+      motivosTrack.style.transition = "none";
+      motivosCurrentIndex = 1;
+      motivosShowSlide(motivosCurrentIndex);
+      setTimeout(() => {
+        motivosTrack.style.transition = "transform 0.5s ease-in-out";
+      }, 0);
+    }
+
+    if (motivosCurrentIndex === 0) {
+      motivosTrack.style.transition = "none";
+      motivosCurrentIndex = motivosNumSlides;
+      motivosShowSlide(motivosCurrentIndex);
+      setTimeout(() => {
+        motivosTrack.style.transition = "transform 0.5s ease-in-out";
+      }, 0);
+    }
+
+    motivosIsTransitioning = false;
+
+    if (!motivosCarousel.matches(":hover")) {
+      motivosStartAutoplay();
+    }
+  });
+
+  function motivosNextSlide() {
+    if (motivosIsTransitioning) return;
+    motivosStopAutoplay();
+    motivosIsTransitioning = true;
+    motivosCurrentIndex++;
+    motivosShowSlide(motivosCurrentIndex);
+  }
+
+  function motivosPrevSlide() {
+    if (motivosIsTransitioning) return;
+    motivosStopAutoplay();
+    motivosIsTransitioning = true;
+    motivosCurrentIndex--;
+    motivosShowSlide(motivosCurrentIndex);
+  }
+
+  function motivosStartAutoplay() {
+    motivosStopAutoplay();
+    motivosAutoplayTimer = setTimeout(motivosNextSlide, 4000);
+  }
+
+  function motivosStopAutoplay() {
+    clearTimeout(motivosAutoplayTimer);
+  }
+
+  motivosCarousel.addEventListener("mouseenter", motivosStopAutoplay);
+  motivosCarousel.addEventListener("mouseleave", motivosStartAutoplay);
+
+  // Suporte a swipe
+  let motivosTouchStartX = 0;
+  let motivosTouchEndX = 0;
+  let motivosTouchStartY = 0;
+  let motivosTouchEndY = 0;
+
+  motivosCarousel.addEventListener(
+    "touchstart",
+    (e) => {
+      motivosTouchStartX = e.changedTouches[0].screenX;
+      motivosTouchStartY = e.changedTouches[0].screenY;
+      motivosStopAutoplay();
+    },
+    { passive: true }
+  );
+
+  motivosCarousel.addEventListener(
+    "touchend",
+    (e) => {
+      motivosTouchEndX = e.changedTouches[0].screenX;
+      motivosTouchEndY = e.changedTouches[0].screenY;
+      motivosHandleSwipe();
+      motivosStartAutoplay();
+    },
+    { passive: true }
+  );
+
+  function motivosHandleSwipe() {
+    const swipeThreshold = 50;
+    const horizontalDiff = motivosTouchEndX - motivosTouchStartX;
+    const verticalDiff = Math.abs(motivosTouchEndY - motivosTouchStartY);
+
+    if (
+      Math.abs(horizontalDiff) > swipeThreshold &&
+      Math.abs(horizontalDiff) > verticalDiff
+    ) {
+      if (horizontalDiff > 0) {
+        motivosPrevSlide();
+      } else {
+        motivosNextSlide();
+      }
+    }
+  }
+
+  motivosStartAutoplay();
+});
+
+// Carrossel de marcas infinito
+document.addEventListener("DOMContentLoaded", function () {
+  const brandsLogos = [
+    "imgs/marcas/01daikin.png",
+    "imgs/marcas/02fujitsu.svg",
+    "imgs/marcas/03hitachi.png",
+    "imgs/marcas/04samsung.png",
+    "imgs/marcas/05lg.svg",
+    "imgs/marcas/06gree.svg",
+    "imgs/marcas/07midea.png",
+    "imgs/marcas/08carrier.svg",
+    "imgs/marcas/09trane.png",
+    "imgs/marcas/10tcl.svg",
+    "imgs/marcas/11eletrolux.png",
+    "imgs/marcas/12philco.png",
+    "imgs/marcas/13consul.png",
+  ];
+
+  const brandsTrack = document.querySelector(".brands-carousel-track");
+
+  if (!brandsTrack) return;
+
+  // Adiciona as logos duas vezes para criar o efeito de loop infinito
+  const addLogos = () => {
+    brandsLogos.forEach((logoSrc) => {
+      const img = document.createElement("img");
+      img.classList.add("brand-logo");
+      img.src = logoSrc;
+      img.alt = "Logo de marca";
+      brandsTrack.appendChild(img);
+    });
+  };
+
+  // Adiciona as logos duas vezes para o loop contínuo
+  addLogos();
+  addLogos();
+});
+
 // Smooth scroll para links internos (caso precise adicionar navegação)
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {

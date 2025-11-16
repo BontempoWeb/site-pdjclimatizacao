@@ -247,12 +247,157 @@ section {
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
-  min-height: 60vh;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+}
+
+.motivos .box-wrap {
+  padding: 150px 30px;
 }
 
 .motivos h2 {
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.motivos-content {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.motivos-cards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.motivos-cards .card {
+  padding: 1.5rem;
+}
+
+.motivos-cards .card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.motivos-cards h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.motivos-cards p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.motivos-image {
+  flex: 0 0 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.motivos-image img {
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+}
+
+/* Carrossel de Imagens Motivos */
+.motivos-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.motivos-carousel-track-container {
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.motivos-carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 0;
+}
+
+.motivos-carousel-image {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: 100%;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.motivos-carousel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.motivos-carousel .carousel-btn:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+.motivos-carousel .motivos-prev {
+  left: 10px;
+}
+
+.motivos-carousel .motivos-next {
+  right: 10px;
+}
+
+/* Responsividade para motivos */
+@media (max-width: 968px) {
+  .motivos-content {
+    flex-direction: column;
+  }
+
+  .motivos-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .motivos-image {
+    flex: 1;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  /* Ocultar setas do carrossel em mobile */
+  .motivos-carousel .motivos-prev,
+  .motivos-carousel .motivos-next {
+    display: none;
+  }
 }
 
 /* Benefícios - pattern*/
@@ -292,6 +437,35 @@ section {
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
+}
+
+.google-review-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.google-review-cta:hover {
+  transform: translateY(-3px);
+}
+
+.google-stars-img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.google-review-cta p {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 2.5rem 0;
+  text-align: center;
 }
 
 .testimonial-carousel {
@@ -428,33 +602,106 @@ section {
   transform: scale(1.05);
 }
 
-/* About - imagem de fundo */
+/* About - pattern com máscara no topo */
 .about {
-  background-color: var(--filter-color);
-  background-image: url("imgs/ph02.jpg");
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: multiply;
   min-height: 70vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  /* Remove a máscara do fundo */
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" width="1000" height="83"><g transform="scale(1,-1)" transform-origin="50%"><path d="M0 1v99c134.3 0 153.7-99 296-99H0Z" opacity=".5"></path><path d="M1000 4v86C833.3 90 833.3 3.6 666.7 3.6S500 90 333.3 90 166.7 4 0 4h1000Z" opacity=".5"></path><path d="M617 1v86C372 119 384 1 196 1h421Z" opacity=".5"></path><path d="M1000 0H0v52C62.5 28 125 4 250 4c250 0 250 96 500 96 125 0 187.5-24 250-48V0Z"></path></g></svg>'),
+    linear-gradient(
+      transparent calc(var(--mask-head-size) - 1px),
+      black calc(var(--mask-head-size) - 1px),
+      black 100%,
+      black 100%
+    ) !important;
+  mask-repeat: no-repeat !important;
+  mask-position: top, center !important;
+  mask-size: 100% !important;
 }
 
 .about .box-wrap {
   max-width: 900px;
   margin: 0 auto;
+  padding-bottom: 0;
 }
 
 .about h2 {
   font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
+  color: var(--primary-blue);
 }
 
-.about p {
+.about h2.brands-title {
+  margin-top: 4rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-card {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 2.5rem;
+}
+
+.about-card p {
   font-size: 1.2rem;
   line-height: 1.8;
   text-align: center;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* Carrossel de Marcas Infinito */
+.brands-carousel-wrapper {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 2rem 0;
+  z-index: 1;
+}
+
+.brands-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-brands 30s linear infinite;
+  gap: 3rem;
+}
+
+.brands-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.brand-logo {
+  height: 80px;
+  width: 120px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.7);
+  transition: all 0.3s ease;
+}
+
+.brand-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+@keyframes scroll-brands {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Footer */
@@ -571,6 +818,19 @@ footer {
 
   .footer-logo {
     max-width: 180px;
+  }
+
+  .about h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .about h2.brands-title {
+    margin-top: 3rem;
+  }
+  /* Ajuste móvel específico para a seção "motivos": reduzir padding do box-wrap */
+  .motivos .box-wrap {
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 
