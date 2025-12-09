@@ -220,10 +220,11 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   // Imagens para o carrossel (todas as .png da pasta imgs)
   const motivosImages = [
-    "./imgs/ph01.png",
-    "./imgs/ph02.jpg",
-    "./imgs/ph03.jpg",
+    "./imgs/ph05.jpg",
+    "./imgs/ph06.jpg",
     "./imgs/ph04.jpg",
+    "./imgs/ph07.jpg",
+    "./imgs/ph02.jpg",
   ];
 
   const motivosTrack = document.querySelector(".motivos-carousel-track");
