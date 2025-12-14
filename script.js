@@ -222,9 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const motivosImages = [
     "./imgs/ph05.jpg",
     "./imgs/ph06.jpg",
-    "./imgs/ph04.jpg",
     "./imgs/ph07.jpg",
-    "./imgs/ph02.jpg",
   ];
 
   const motivosTrack = document.querySelector(".motivos-carousel-track");
