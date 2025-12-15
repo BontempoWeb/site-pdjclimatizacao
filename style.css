@@ -815,6 +815,13 @@ footer {
 
 /* Responsividade global */
 @media (max-width: 768px) {
+
+  /* Reduzir padding inferior do mask-box em mobile */
+  .mask-box {
+    padding-block-end: 80px;
+    margin-block-end: -50px;
+  }
+
   .cards-grid {
     grid-template-columns: 1fr;
   }
