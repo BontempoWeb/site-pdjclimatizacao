@@ -14,6 +14,7 @@
 *::after {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -31,23 +32,21 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
 .mask-container {
   container-type: inline-size;
   --mask-head-size: calc(0.083 * 100cqw);
   --mask-foot-size: calc(0.121 * 100cqw);
 }
+
 .mask-box {
-  margin-block: calc(-1 * var(--mask-head-size) - 1px)
-    calc(-1 * var(--mask-foot-size) - 1px);
-  padding-block: calc(var(--mask-head-size) + 1px)
-    calc(var(--mask-foot-size) + 1px);
+  margin-block: calc(-1 * var(--mask-head-size) - 1px) calc(-1 * var(--mask-foot-size) - 1px);
+  padding-block: calc(var(--mask-head-size) + 1px) calc(var(--mask-foot-size) + 1px);
   mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" width="1000" height="83"><g transform="scale(1,-1)" transform-origin="50%"><path d="M0 1v99c134.3 0 153.7-99 296-99H0Z" opacity=".5"></path><path d="M1000 4v86C833.3 90 833.3 3.6 666.7 3.6S500 90 333.3 90 166.7 4 0 4h1000Z" opacity=".5"></path><path d="M617 1v86C372 119 384 1 196 1h421Z" opacity=".5"></path><path d="M1000 0H0v52C62.5 28 125 4 250 4c250 0 250 96 500 96 125 0 187.5-24 250-48V0Z"></path></g></svg>'),
-    linear-gradient(
-      transparent calc(var(--mask-head-size) - 1px),
+    linear-gradient(transparent calc(var(--mask-head-size) - 1px),
       black calc(var(--mask-head-size) - 1px),
       black calc(100% - var(--mask-foot-size) + 1px),
-      transparent calc(100% - var(--mask-foot-size) + 1px)
-    ),
+      transparent calc(100% - var(--mask-foot-size) + 1px)),
     url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" width="1000" height="121"><g transform="scale(-1,1)" transform-origin="50% 50%"><path d="M0 1v99c134.3 0 153.7-99 296-99H0Z" opacity=".5"></path><path d="M1000 4v86C833.3 90 833.3 3.6 666.7 3.6S500 90 333.3 90 166.7 4 0 4h1000Z" opacity=".5"></path><path d="M617 1v86C372 119 384 1 196 1h421Z" opacity=".5"></path><path d="M1000 0H0v52C62.5 28 125 4 250 4c250 0 250 96 500 96 125 0 187.5-24 250-48V0Z"></path></g></svg>');
   mask-repeat: no-repeat;
   mask-position: top, center, bottom;
@@ -56,25 +55,32 @@ body {
   background-color: #ffffff;
   background-image: url("imgs/snowflake.svg");
   background-repeat: repeat;
-  background-size: 120px 120px; /* Tamanho maior = mais espaçamento entre flocos */
-  background-position: 0 0; /* Alinhamento do pattern */
+  background-size: 120px 120px;
+  /* Tamanho maior = mais espaçamento entre flocos */
+  background-position: 0 0;
+  /* Alinhamento do pattern */
 }
+
 .above-mask-box {
   padding-bottom: var(--mask-head-size);
   display: block;
 }
+
 .below-mask-box {
   padding-top: var(--mask-foot-size);
   display: block;
 }
+
 .middle-mask-box {
   padding-top: var(--mask-foot-size);
   padding-bottom: var(--mask-head-size);
   display: block;
 }
+
 .box-wrap {
   padding: 30px;
-  color: var(--text-dark); /* Texto escuro para contrastar com fundo branco */
+  color: var(--text-dark);
+  /* Texto escuro para contrastar com fundo branco */
 }
 
 /* Estilos globais para títulos */
@@ -212,11 +218,9 @@ section {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--secondary-blue),
-    var(--primary-blue)
-  );
+  background: linear-gradient(90deg,
+      var(--secondary-blue),
+      var(--primary-blue));
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -405,6 +409,13 @@ section {
     width: 100%;
     max-width: 350px;
     margin: 0 auto;
+  }
+
+  /* Ajuste de imagens do carrossel em mobile */
+  .motivos-carousel-image {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
   }
 
   /* Ocultar setas do carrossel em mobile */
@@ -627,12 +638,10 @@ section {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
   mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" width="1000" height="83"><g transform="scale(1,-1)" transform-origin="50%"><path d="M0 1v99c134.3 0 153.7-99 296-99H0Z" opacity=".5"></path><path d="M1000 4v86C833.3 90 833.3 3.6 666.7 3.6S500 90 333.3 90 166.7 4 0 4h1000Z" opacity=".5"></path><path d="M617 1v86C372 119 384 1 196 1h421Z" opacity=".5"></path><path d="M1000 0H0v52C62.5 28 125 4 250 4c250 0 250 96 500 96 125 0 187.5-24 250-48V0Z"></path></g></svg>'),
-    linear-gradient(
-      transparent calc(var(--mask-head-size) - 1px),
+    linear-gradient(transparent calc(var(--mask-head-size) - 1px),
       black calc(var(--mask-head-size) - 1px),
       black 100%,
-      black 100%
-    ) !important;
+      black 100%) !important;
   mask-repeat: no-repeat !important;
   mask-position: top, center !important;
   mask-size: 100% !important;
@@ -713,6 +722,7 @@ section {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -746,8 +756,7 @@ footer {
 }
 
 .footer-logo-link:hover .footer-logo {
-  filter: brightness(0) saturate(100%) invert(58%) sepia(98%) saturate(2377%)
-    hue-rotate(186deg) brightness(101%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(58%) sepia(98%) saturate(2377%) hue-rotate(186deg) brightness(101%) contrast(101%);
 }
 
 .footer-logo {
@@ -815,7 +824,8 @@ footer {
   }
 
   .hero {
-    background-image: url("imgs/ph01-mobile.png"); /* Imagem específica para mobile */
+    background-image: url("imgs/ph01-mobile.png");
+    /* Imagem específica para mobile */
     background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -841,11 +851,13 @@ footer {
   .about h2.brands-title {
     margin-top: 3rem;
   }
+
   /* Ajuste móvel específico para a seção "motivos": reduzir padding do box-wrap */
   .motivos .box-wrap {
     padding-top: 30px;
     padding-bottom: 30px;
   }
+
   /* Desativar interação no carrossel de marcas apenas em mobile */
   .brands-carousel-wrapper,
   .brands-carousel-wrapper .brands-carousel-track,
@@ -854,6 +866,7 @@ footer {
     touch-action: none;
     cursor: default;
   }
+
   /* Evita que o hover pause a animação em alguns navegadores móveis que simulam hover */
   .brands-carousel-track:hover {
     animation-play-state: running !important;
@@ -865,18 +878,22 @@ footer {
   .testimonial-carousel {
     padding: 0;
   }
+
   /* Ocultar setas em modo responsivo */
   .carousel-btn.prev,
   .carousel-btn.next {
     display: none;
   }
+
   .testimonial-card {
     padding: 30px 20px;
   }
+
   .testimonial-card .review-text {
     font-size: 1rem;
     min-height: 120px;
   }
+
   .carousel-container h2 {
     font-size: 1.8rem;
   }
